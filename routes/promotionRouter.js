@@ -1,7 +1,7 @@
 const express = require('express');
 const promotionRouter = express.Router();
 
-
+//updates made for put
 promotionRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;

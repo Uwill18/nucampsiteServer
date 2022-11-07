@@ -34,7 +34,7 @@ partnerRouter.route('/:partnerId')
     res.end(`Will add the partner: ${req.body.name} with details: ${req.body.description}`);
 })
 .put((req, res) => {
-    res.end(`PUT operation will add the partner: ${req.body.name} with description: ${req.body.description}`);
+    res.end(`PUT operation will add the partner: ${req.body.name} with said  description: ${req.body.description}`);
 })
 .delete((req, res) => {
     res.end('Deleting all partners');
