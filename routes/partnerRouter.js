@@ -40,6 +40,6 @@ partnerRouter.route('/:partnerId')
     res.end('Deleting all partners');
 });
 
-//testing
+
 
 module.exports = partnerRouter;
