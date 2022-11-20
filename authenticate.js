@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 const config = require('./config.js');
 
-//exports.local = passport.use(new LocalStrategy(User.authenticate()));//says User.authenticate() is not a function
+exports.local = passport.use(new LocalStrategy(User.authenticate()));//says User.authenticate() is not a function
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -39,4 +39,5 @@ exports.jwtPassport = passport.use(
 );
 
 exports.verifyUser = passport.authenticate('jwt', {session: false});
+exports.verifyAdmin = verifyAdmin;
 //verify admin inherits/extends verify user?
