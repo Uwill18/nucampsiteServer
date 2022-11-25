@@ -11,6 +11,7 @@ const partnerRouter = require('./routes/partnerRouter');
 const mongoose = require('mongoose');
 
 const passport = require('passport');
+const uploadRouter = require('./routes/uploadRouter');
 
 const config = require('./config');
 const url = config.mongoUrl;
@@ -58,6 +59,7 @@ app.use('/users', usersRouter);
 app.use('/campsites', campsiteRouter);
 app.use('/promotions', promotionRouter);
 app.use('/partners', partnerRouter);
+app.use('/imageUpload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -74,5 +76,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.all('*', (req, res, next) => {
+  if (req.secure) {
+    return next();
+  } else {
+      console.log(`Redirecting to: https://${req.hostname}:${app.get('secPort')}${req.url}`);
+      res.redirect(301, `https://${req.hostname}:${app.get('secPort')}${req.url}`);
+  }
+});
+
 
 module.exports = app;
