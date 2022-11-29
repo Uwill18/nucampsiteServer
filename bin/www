@@ -21,15 +21,12 @@ app.set('secPort', port+443);
 /**
  * Create HTTP server.
  */
-
+ var server = http.createServer(app);
 
 /**
  * Create HTTPS server.
  */ 
 
-
- var server = http.createServer(app);
- 
  const options = {
   key: fs.readFileSync(__dirname+'/server.key'),
   cert: fs.readFileSync(__dirname+'/server.cert')
