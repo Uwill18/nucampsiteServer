@@ -38,6 +38,22 @@ exports.jwtPassport = passport.use(
     )
 );
 
+exports.verifyUser = passport.authenticate('jwt', {session: false});
+
+const verifyAdmin=function(req,res,next){
+    if(req.user.admin){
+        return next();
+    } else{
+        let error = new Error("you are not authorized to perform this operation");
+        error.status = 403;
+        return next(error);
+    };
+
+}
+
+exports.verifyAdmin = verifyAdmin;
+
+
 exports.facebookPassport = passport.use(
     new FacebookTokenStrategy(
         {
@@ -69,6 +85,5 @@ exports.facebookPassport = passport.use(
     )
 );
 
-exports.verifyUser = passport.authenticate('jwt', {session: false});
-exports.verifyAdmin = verifyAdmin;
+
 //verify admin inherits/extends verify user?

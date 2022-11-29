@@ -101,7 +101,7 @@ campsiteRouter.route('/:campsiteId/comments')
     .then(campsite => {
         if (campsite) {
 
-            if(req.body.author){
+            req.body.author = req.user._id
 
                 campsite.comments.push(req.body);
                 campsite.save()
@@ -115,10 +115,7 @@ campsiteRouter.route('/:campsiteId/comments')
                 err = new Error(`Campsite ${req.params.campsiteId} not found`);
                 err.status = 404;
                 return next(err);
-            }
-
-            }
-            
+            }  
 
     })
     .catch(err => next(err));
